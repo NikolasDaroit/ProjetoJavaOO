@@ -13,7 +13,10 @@ import java.util.ResourceBundle;
 import static javafx.application.ConditionalFeature.FXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
@@ -21,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -111,7 +115,22 @@ public class BancoEletronicoController implements Initializable {
         this.bbContas = bbContas;
         this.btnFinalizarDeposito = btnFinalizarDeposito;
     }
+        @FXML
+    private Button btnMenu;
     
+    @FXML
+    private void goToMenu(){
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            root = fxmlLoader.load(getClass().getResource("MenuPrincipal.fxml").openStream());                       
+            Stage stage = SistemaBancario.stage;
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            
+        } catch (Exception e) {
+        }
+    }
     @FXML
     private Button btnFinalizarDeposito;
     public BancoEletronicoController(){

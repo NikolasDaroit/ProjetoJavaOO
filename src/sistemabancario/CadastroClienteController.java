@@ -60,6 +60,22 @@ public class CadastroClienteController implements Initializable {
         }
         return false;
     }
+        @FXML
+    private Button btnMenu;
+    
+    @FXML
+    private void goToMenu(){
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            root = fxmlLoader.load(getClass().getResource("MenuPrincipal.fxml").openStream());                       
+            Stage stage = SistemaBancario.stage;
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            
+        } catch (Exception e) {
+        }
+    }
     @FXML
     private void loginUsuario(ActionEvent av){
         Parent root;

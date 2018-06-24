@@ -17,6 +17,7 @@ public class Database {
 
   public ArrayList<Cliente> clientes = new ArrayList<Cliente>();
   public ArrayList<Conta> contas = new ArrayList<Conta>();
+  public ArrayList<Empregado> empregados = new ArrayList<Empregado>();
   public Cliente clienteAtivo ;
 
   static {
@@ -25,6 +26,21 @@ public class Database {
 
   Database() { 
     // hidden constructor
+        Gerente gerente = new Gerente();
+        gerente.setNome("Patrão");
+        empregados.add(gerente);
+        Agencia agencia = new Agencia();
+        agencia.setGerente(gerente);
+        
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome("Ehentao");
+        funcionario.setGerente(gerente);
+        empregados.add(funcionario);
+        
+        Seguranca seguranca = new Seguranca();
+        seguranca.setNome("Boladão");
+        seguranca.setTurno(0);
+        empregados.add(seguranca);
   }    
 
   public static Database getInstance() {
@@ -53,6 +69,14 @@ public class Database {
 
     public void setClienteAtivo(Cliente clienteAtivo) {
         this.clienteAtivo = clienteAtivo;
+    }
+
+    public ArrayList<Empregado> getEmpregados() {
+        return empregados;
+    }
+
+    public void setEmpregados(ArrayList<Empregado> empregados) {
+        this.empregados = empregados;
     }
     
 }

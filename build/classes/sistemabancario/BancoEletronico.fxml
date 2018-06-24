@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemabancario.BancoEletronicoController">
    <children>
-      <Label fx:id="mensagemSistema" layoutX="162.0" layoutY="35.0" prefHeight="54.0" prefWidth="68.0" text="Menu" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="mensagemSistema" layoutX="162.0" layoutY="35.0" prefHeight="54.0" prefWidth="68.0" text="Caixa" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Arial" size="25.0" />
          </font></Label>
@@ -50,5 +50,6 @@
          </buttons>
       </ButtonBar>
       <Button fx:id="btnFinalizarSaque" layoutX="170.0" layoutY="321.0" mnemonicParsing="false" onAction="#realizarSaque" text="Finzalizar Saque" />
+      <Button fx:id="btnMenu" layoutX="286.0" layoutY="50.0" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
    </children>
 </AnchorPane>

@@ -24,7 +24,7 @@ public class SistemaBancario extends Application {
     public static Stage stage;
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("CadastroCliente.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"));
         
         Scene scene = new Scene(root);
         
