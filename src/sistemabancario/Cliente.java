@@ -60,13 +60,13 @@ public class Cliente extends Usuario{
     public String toString() {
         String txt = "";
         if (this.getConta(10)!=null){
-            txt+=" Salario:" + this.getConta(10);
+            txt+=" \nSalario:" + this.getConta(10);
         }
         if (this.getConta(20)!=null){
-            txt+=" Corrente:" + this.getConta(20);
+            txt+=" \nCorrente:" + this.getConta(20);
         }
         if (this.getConta(30)!=null){
-            txt+=" Poupanca:" + this.getConta(30);
+            txt+=" \nPoupanca:" + this.getConta(30);
         }
         return "Cliente{Nome: " +this.nome + txt +'}';
     }

@@ -71,7 +71,7 @@ public class LoginUsuarioController implements Initializable {
                         db.setClienteAtivo(cliente);
                         System.out.println("ATIVO"+cliente);
                         Alert alert = new Alert(AlertType.CONFIRMATION, "Login correto", ButtonType.OK);
-                        alert.show();
+                        //alert.show();
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         root = fxmlLoader.load(getClass().getResource("BancoEletronico.fxml").openStream());
                         BancoEletronicoController bancoEletronico = (BancoEletronicoController) fxmlLoader.getController();

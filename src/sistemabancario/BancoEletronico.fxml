@@ -4,7 +4,9 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -25,16 +27,28 @@
       <ButtonBar fx:id="btbOpcoes" layoutX="62.0" layoutY="168.0" prefHeight="40.0" prefWidth="200.0">
          <buttons>
             <Button fx:id="btnDepositar" mnemonicParsing="false" onAction="#handleDepositar" text="Depositar" />
-            <Button fx:id="btnTransferir" mnemonicParsing="false" text="Transferir" />
-            <Button fx:id="btnSacar" mnemonicParsing="false" text="Sacar" />
+            <Button fx:id="btnTransferir" disable="true" mnemonicParsing="false" text="Transferir" />
+            <Button fx:id="btnSacar" mnemonicParsing="false" onAction="#handleSacar" text="Sacar" />
          </buttons>
       </ButtonBar>
       <TextField fx:id="txtValor" layoutX="178.0" layoutY="237.0" />
       <TextField fx:id="txtConta" layoutX="178.0" layoutY="276.0" />
       <Label fx:id="lblValor" layoutX="90.0" layoutY="241.0" text="Valor" />
       <Label fx:id="lblConta" layoutX="90.0" layoutY="280.0" text="Conta" />
-      <Button fx:id="btnCriarConta" layoutX="80.0" layoutY="321.0" mnemonicParsing="false" text="Criar Conta" />
+      <Button fx:id="btnCriarConta" layoutX="80.0" layoutY="321.0" mnemonicParsing="false" onAction="#criarConta" text="Criar Conta" />
       <Button fx:id="btnAtt" layoutX="36.0" layoutY="597.0" mnemonicParsing="false" onAction="#updateClienteAtivo" text="Att" />
       <Button fx:id="btnFinalizarDeposito" layoutX="170.0" layoutY="321.0" mnemonicParsing="false" onAction="#realizarDeposito" text="Finalizar deposito" />
+      <ButtonBar fx:id="bbContas" layoutX="68.0" layoutY="96.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <RadioButton fx:id="rSalario" mnemonicParsing="false" text="Salário">
+               <toggleGroup>
+                  <ToggleGroup fx:id="tipoconta" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rCorrente" mnemonicParsing="false" text="Corrente" toggleGroup="$tipoconta" />
+            <RadioButton fx:id="rPoupanca" mnemonicParsing="false" text="Poupanca" toggleGroup="$tipoconta" />
+         </buttons>
+      </ButtonBar>
+      <Button fx:id="btnFinalizarSaque" layoutX="170.0" layoutY="321.0" mnemonicParsing="false" onAction="#realizarSaque" text="Finzalizar Saque" />
    </children>
 </AnchorPane>

@@ -18,7 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * FXML Controller class
@@ -68,6 +70,49 @@ public class BancoEletronicoController implements Initializable {
     @FXML
     private Button btnAtt;
     @FXML
+    private ToggleGroup tipoconta;
+    @FXML
+    private RadioButton rSalario;
+    @FXML
+    private RadioButton rCorrente;
+    @FXML
+    private RadioButton rPoupanca;
+    @FXML
+    private ButtonBar bbContas;
+    @FXML
+    private Button btnFinalizarSaque;
+    public BancoEletronicoController(int accopc, Database db, ArrayList<Conta> contas, Conta cc, Conta cs, Conta cp, ListView lvClienteAtivo, TextField txtConta, TextField txtValor, Label lblConta, Label lblValor, ListView lvUsuario, ButtonBar btbOpcoes, ButtonBar btbContas, Button btnSalario, Button btnCorrente, Button btnPoupanca, Button btnCriarConta, Button btnDepositar, Button btnTransferir, Button btnSacar, Button btnAtt, ToggleGroup tipoconta, RadioButton rSalario, RadioButton rCorrente, RadioButton rPoupanca, ButtonBar bbContas, Button btnFinalizarDeposito) {
+        this.accopc = accopc;
+        this.db = db;
+        this.contas = contas;
+        this.cc = cc;
+        this.cs = cs;
+        this.cp = cp;
+        this.lvClienteAtivo = lvClienteAtivo;
+        this.txtConta = txtConta;
+        this.txtValor = txtValor;
+        this.lblConta = lblConta;
+        this.lblValor = lblValor;
+        this.lvUsuario = lvUsuario;
+        this.btbOpcoes = btbOpcoes;
+        this.btbContas = btbContas;
+        this.btnSalario = btnSalario;
+        this.btnCorrente = btnCorrente;
+        this.btnPoupanca = btnPoupanca;
+        this.btnCriarConta = btnCriarConta;
+        this.btnDepositar = btnDepositar;
+        this.btnTransferir = btnTransferir;
+        this.btnSacar = btnSacar;
+        this.btnAtt = btnAtt;
+        this.tipoconta = tipoconta;
+        this.rSalario = rSalario;
+        this.rCorrente = rCorrente;
+        this.rPoupanca = rPoupanca;
+        this.bbContas = bbContas;
+        this.btnFinalizarDeposito = btnFinalizarDeposito;
+    }
+    
+    @FXML
     private Button btnFinalizarDeposito;
     public BancoEletronicoController(){
         
@@ -112,12 +157,22 @@ public class BancoEletronicoController implements Initializable {
    
     @FXML
     private void handleDepositar(ActionEvent av){
+        btnSacar.setDisable(true);
         lblValor.setVisible(true); 
         txtValor.setVisible(true);
         btnFinalizarDeposito.setVisible(true);
     }
+    @FXML
+    private void handleSacar(ActionEvent av){
+        btnDepositar.setDisable(true);
+        lblValor.setVisible(true); 
+        txtValor.setVisible(true);
+        
+        btnFinalizarSaque.setVisible(true);
+    }
     
     private void hideItens(){
+        txtValor.setText("");
         btnCorrente.setVisible(false);
         btnCriarConta.setVisible(false);
         btnPoupanca.setVisible(false);
@@ -128,6 +183,23 @@ public class BancoEletronicoController implements Initializable {
         lblConta.setVisible(false); 
         txtConta.setVisible(false);
         btnFinalizarDeposito.setVisible(false);
+        btnFinalizarSaque.setVisible(false);
+        btnSacar.setDisable(false);
+        btnDepositar.setDisable(false);
+        
+    }
+    
+    @FXML 
+    private void criarConta(ActionEvent ae){
+        try {
+            if (this.clienteAtivo.getConta((int) tipoconta.getSelectedToggle().getUserData())==null){
+                this.clienteAtivo.abrirConta((int) tipoconta.getSelectedToggle().getUserData());
+                updateClienteAtivo();
+            }
+        } catch (Exception e) {
+        }
+        
+       //this.clienteAtivo.abrirConta(10);
     }
     @FXML
     public void updateClienteAtivo(){
@@ -156,8 +228,12 @@ public class BancoEletronicoController implements Initializable {
             }
             if (clienteAtivo.getConta(10) ==null && clienteAtivo.getConta(20) ==null  && clienteAtivo.getConta(30) ==null ){ //salario
                 btnCriarConta.setVisible(true);
+                bbContas.setVisible(true);
+                
             }else{
+                bbContas.setVisible(false);
                 btnCriarConta.setVisible(false);
+                
             }
         }
     }
@@ -168,12 +244,21 @@ public class BancoEletronicoController implements Initializable {
         System.out.println(this.clienteAtivo.getConta(accopc).getSaldo());
         updateClienteAtivo();
     }
+    @FXML
+    private void realizarSaque(ActionEvent av){
+        this.clienteAtivo.getConta(accopc).retira(Double.parseDouble(txtValor.getText()));
+        System.out.println(this.clienteAtivo.getConta(accopc).getSaldo());
+        updateClienteAtivo();
+    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         db = Database.getInstance();
-        
-            
+        rCorrente.setUserData(20);
+        rSalario.setUserData(10);
+        rPoupanca.setUserData(30);
+        bbContas.setVisible(false);
         btbOpcoes.setVisible(false);
         hideItens();
 
