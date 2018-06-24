@@ -94,6 +94,14 @@ public class CadastroClienteController implements Initializable {
         }
     }
     @FXML
+    private void attUserList(){
+        lvUsuario.getItems().clear();
+        for (Usuario cliente : clientes) {
+            lvUsuario.scrollTo(lvUsuario.getItems().size() - 1);
+            lvUsuario.getItems().add(cliente);
+        }
+    }
+    @FXML
     private void cadastroButtonAction(ActionEvent event) {
         if (!verificaSenhaIgual(senha.getText(), reSenha.getText()) && senha.getText().length()>0){
             mensagemSistema.setText("Senhas incompativeis");
@@ -105,10 +113,9 @@ public class CadastroClienteController implements Initializable {
         u.setReSenha(reSenha.getText());
         clientes.add(u);
         mensagemSistema.setText("Usuario "+u.getUniqueID()+" cadastrado corretamente!");
-        
+        attUserList();
         //lvUsuario.getItems().add(u);
-        lvUsuario.scrollTo(lvUsuario.getItems().size() - 1);
-        lvUsuario.getItems().add(u);
+        
         //insertUser(u.getNome(), u.getEmail(), u.getUsuario(), u.getSenha(), u.getReSenha());
     }
     

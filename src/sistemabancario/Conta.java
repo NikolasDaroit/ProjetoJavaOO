@@ -27,7 +27,7 @@ abstract class Conta {
       this.saldo += val; 
     }
     public void retira(double val){
-        if (this.saldo > val){
+        if (this.saldo >= val){
             this.saldo -= val;
         }
     }
