@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemabancario.BancoEletronicoController">
+   <children>
+      <Label fx:id="mensagemSistema" layoutX="162.0" layoutY="35.0" prefHeight="54.0" prefWidth="68.0" text="Menu" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Arial" size="25.0" />
+         </font></Label>
+      <ListView fx:id="lvClienteAtivo" layoutX="50.0" layoutY="366.0" prefHeight="215.0" prefWidth="292.0" />
+      <ButtonBar fx:id="btbContas" layoutX="62.0" layoutY="116.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="btnSalario" mnemonicParsing="false" onAction="#liberaSalario" text="Salário" />
+            <Button fx:id="btnCorrente" mnemonicParsing="false" onAction="#liberaCorrente" text="Corrente" />
+            <Button fx:id="btnPoupanca" mnemonicParsing="false" onAction="#liberaPoupanca" text="Poupanca" />
+        </buttons>
+      </ButtonBar>
+      <ButtonBar fx:id="btbOpcoes" layoutX="62.0" layoutY="168.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <Button fx:id="btnDepositar" mnemonicParsing="false" onAction="#handleDepositar" text="Depositar" />
+            <Button fx:id="btnTransferir" mnemonicParsing="false" text="Transferir" />
+            <Button fx:id="btnSacar" mnemonicParsing="false" text="Sacar" />
+         </buttons>
+      </ButtonBar>
+      <TextField fx:id="txtValor" layoutX="178.0" layoutY="237.0" />
+      <TextField fx:id="txtConta" layoutX="178.0" layoutY="276.0" />
+      <Label fx:id="lblValor" layoutX="90.0" layoutY="241.0" text="Valor" />
+      <Label fx:id="lblConta" layoutX="90.0" layoutY="280.0" text="Conta" />
+      <Button fx:id="btnCriarConta" layoutX="80.0" layoutY="321.0" mnemonicParsing="false" text="Criar Conta" />
+      <Button fx:id="btnAtt" layoutX="36.0" layoutY="597.0" mnemonicParsing="false" onAction="#updateClienteAtivo" text="Att" />
+      <Button fx:id="btnFinalizarDeposito" layoutX="170.0" layoutY="321.0" mnemonicParsing="false" onAction="#realizarDeposito" text="Finalizar deposito" />
+   </children>
+</AnchorPane>
