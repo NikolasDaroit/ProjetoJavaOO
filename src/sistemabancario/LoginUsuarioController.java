@@ -5,6 +5,8 @@
  */
 package sistemabancario;
 
+import model.Cliente;
+import model.Database;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;

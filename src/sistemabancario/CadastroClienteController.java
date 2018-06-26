@@ -5,6 +5,9 @@
  */
 package sistemabancario;
 
+import model.Cliente;
+import model.Database;
+import model.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -12,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import static javafx.application.ConditionalFeature.FXML;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +27,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -50,7 +57,15 @@ public class CadastroClienteController implements Initializable {
     private Label mensagemSistema;
     @FXML
     public   ListView lvUsuario;
-    
+    @FXML
+    private TableView<Cliente> tabela;
+    @FXML
+    private TableColumn<Cliente, String> nomec;
+    @FXML
+    private TableColumn<Cliente, String> emailc;
+   
+   private ObservableList<Cliente> usuariosc;
+
     
     public ArrayList<Cliente> clientes;
     public Database db = Database.getInstance();
@@ -94,13 +109,43 @@ public class CadastroClienteController implements Initializable {
         }
     }
     @FXML
+    private void updateCliente(){
+        Parent root;
+        try {
+            db.setClienteAtivo(tabela.getSelectionModel().getSelectedItem());
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            root = fxmlLoader.load(getClass().getResource("UpdateCliente.fxml"));                       
+            Stage stage = SistemaBancario.stage;
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            
+        } catch (Exception e) {
+            System.out.println("aopsdk "+e);
+            e.printStackTrace();
+        }
+        
+    }
+    @FXML
     private void attUserList(){
         lvUsuario.getItems().clear();
         for (Usuario cliente : clientes) {
             lvUsuario.scrollTo(lvUsuario.getItems().size() - 1);
             lvUsuario.getItems().add(cliente);
         }
+        usuariosc = tabela.getItems();
+        this.tabela.getItems().clear();
+        for (Cliente cliente : clientes) {
+            usuariosc.add(cliente);
+            
+        }
+        nomec.setCellValueFactory(new PropertyValueFactory<>("nome"));      
+        emailc.setCellValueFactory(new PropertyValueFactory<>("email"));  
+                
+        this.tabela.setItems(usuariosc);
+
     }
+  
+
     @FXML
     private void cadastroButtonAction(ActionEvent event) {
         if (!verificaSenhaIgual(senha.getText(), reSenha.getText()) && senha.getText().length()>0){
@@ -116,7 +161,7 @@ public class CadastroClienteController implements Initializable {
         attUserList();
         //lvUsuario.getItems().add(u);
         
-        //insertUser(u.getNome(), u.getEmail(), u.getUsuario(), u.getSenha(), u.getReSenha());
+        insertUser(u.getNome(), u.getEmail(), u.getSenha(), u.getReSenha());
     }
     
     @Override
@@ -124,25 +169,25 @@ public class CadastroClienteController implements Initializable {
         clientes = db.getClientes();   
         // TODO
     }    
-    public void insertUser(String nome, String email, String usuario, String senha, String reSenha){
+    public void insertUser(String nome, String email,  String senha, String reSenha){
         Conexao c = new Conexao();
         Connection dbConnection = c.getConexao();
         String insertUserSql = "INSERT INTO usuariojava"
-                               +"(nome, email, usuario, senha, reSenha) VALUES"
-                               +"(?,?,?,?,?)";
+                               +"(nome, email, senha, reSenha) VALUES"
+                               +"(?,?,?,?)";
         try {   
            PreparedStatement ps = null; 
            ps = dbConnection.prepareStatement(insertUserSql);
            ps.setString(1, nome);
            ps.setString(2, email);
-           ps.setString(3, usuario);
-           ps.setString(4, senha);
-           ps.setString(5, reSenha);
+           ps.setString(3, senha);
+           ps.setString(4, reSenha);
            int ret = ps.executeUpdate();
            if (ret>0){
              System.out.println(insertUserSql);   
            }
         } catch (Exception e) {
+            System.out.println("aqui "+e);
         }
     }
     

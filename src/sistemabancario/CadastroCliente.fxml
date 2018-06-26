@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="389.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemabancario.CadastroClienteController">
+<AnchorPane id="AnchorPane" prefHeight="642.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemabancario.CadastroClienteController">
    <children>
       <TextField fx:id="nomeCompleto" layoutX="132.0" layoutY="123.0" text="john doe" />
       <TextField fx:id="email" layoutX="132.0" layoutY="167.0" text="john@doe.com" />
@@ -22,5 +24,11 @@
       <ListView fx:id="lvUsuario" layoutX="50.0" layoutY="366.0" prefHeight="215.0" prefWidth="292.0" />
       <Button layoutX="50.0" layoutY="595.0" mnemonicParsing="false" onAction="#attUserList" prefHeight="25.0" prefWidth="292.0" text="Mostrar Usuarios Cadastrados" />
       <Button fx:id="btnMenu" layoutX="290.0" layoutY="29.0" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
+      <TableView fx:id="tabela" layoutX="373.0" layoutY="54.0" onMouseClicked="#updateCliente" prefHeight="303.0" prefWidth="279.0">
+        <columns>
+          <TableColumn fx:id="nomec" prefWidth="138.0" text="Nome" />
+          <TableColumn fx:id="emailc" prefWidth="140.0" text="Email" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

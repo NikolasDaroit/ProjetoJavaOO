@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemabancario;
+package model;
 
 /**
  *
  * @author Aluno
  */
-public class Agencia {
-    protected String endereco;
-    protected Gerente gerente;
+public abstract class Empregado extends Usuario{
 
     public String getEndereco() {
         return endereco;
@@ -21,17 +19,19 @@ public class Agencia {
         this.endereco = endereco;
     }
 
-    public Gerente getGerente() {
-        return gerente;
+    public double getSalario() {
+        return salario;
     }
 
-    public void setGerente(Gerente gerente) {
-        this.gerente = gerente;
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
+    protected String endereco;
+    protected double salario;
 
     @Override
     public String toString() {
-        return "Agencia{" + "endereco=" + endereco + ", gerente=" + gerente + '}';
+        return "Empregado{Nome: " +this.nome + " endereco=" + endereco + ", salario=" + salario + '}';
     }
     
 }

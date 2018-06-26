@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemabancario;
+package model;
 
 /**
  *
  * @author Aluno
  */
-class Gerente extends Empregado{
+public class Gerente extends Empregado{
     protected double bonus;
 
     public double getBonus() {

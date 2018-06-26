@@ -5,6 +5,11 @@
  */
 package sistemabancario;
 
+import model.Database;
+import model.Gerente;
+import model.Empregado;
+import model.Seguranca;
+import model.Funcionario;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

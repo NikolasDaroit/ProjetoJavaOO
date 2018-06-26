@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemabancario;
+package model;
 
 /**
  *
  * @author Aluno
  */
-abstract class Conta {
+public abstract class Conta {
    protected int tipo; //10 salario //20 poupanca //30 corrente
    protected Cliente cliente;
    protected double saldo;

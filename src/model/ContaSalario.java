@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemabancario;
+package model;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *
  * @author Aluno
  */
-class ContaPoupanca extends Conta{
+class ContaSalario extends Conta{
 
   
 
@@ -23,13 +23,12 @@ class ContaPoupanca extends Conta{
         this.numeroConta = numero;
     }
 
-
     public static AtomicLong getIdCounter() {
         return idCounter;
     }
 
     public static void setIdCounter(AtomicLong idCounter) {
-        ContaPoupanca.idCounter = idCounter;
+        ContaSalario.idCounter = idCounter;
     }
     
     protected String numeroConta = createID();//UUID.randomUUID().toString();
@@ -39,14 +38,14 @@ class ContaPoupanca extends Conta{
     {
         return String.valueOf(idCounter.getAndIncrement());
     }
-    public ContaPoupanca(){
-
+    public ContaSalario(){
+        saldo = 0;
     }
-    
+   
 
     @Override
     public String toString() {
-        return "ContaPoupanca{" + "saldo=" + saldo + ", numeroConta=" + numeroConta + '}';
+        return "ContaSalario{" + "saldo=" + saldo + ", numeroConta=" + numeroConta + '}';
     }
     
 }

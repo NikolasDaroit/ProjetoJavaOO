@@ -5,6 +5,8 @@
  */
 package sistemabancario;
 
+import model.CaixaEletronico;
+
 /**
  *
  * @author Aluno

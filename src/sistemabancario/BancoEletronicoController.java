@@ -5,6 +5,9 @@
  */
 package sistemabancario;
 
+import model.Cliente;
+import model.Database;
+import model.Conta;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

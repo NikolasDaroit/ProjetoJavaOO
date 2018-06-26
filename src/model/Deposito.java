@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistemabancario;
+package model;
 
 /**
  *
  * @author Aluno
  */
-public class Saque extends CaixaEletronico{
+public class Deposito extends CaixaEletronico{
     protected double valor;
-    
-    public void sacar(double valor){
-        //TODO
-    }
 
     public double getValor() {
         return valor;
@@ -23,9 +19,14 @@ public class Saque extends CaixaEletronico{
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    public void depositar(double valor){
+        //TODO
+    }
 
     @Override
     public String toString() {
-        return "Saque{" + "valor=" + valor + '}';
+        return "Deposito{" + "valor=" + valor + '}';
     }
+    
 }
